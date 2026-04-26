@@ -78,17 +78,25 @@ class _OnlineStatusWidgetState extends State<OnlineStatusWidget> {
               .marginOnly(left: em),
         );
 
-	Widget setupServerWidget() => Flexible(
-		child: Offstage(
-			offstage: !(!_svcStopped.value &&
-				stateGlobal.svcStatus.value == SvcStatus.ready &&
-				_svcIsUsingPublicServer.value),
-			child: Row(
-			crossAxisAlignment: CrossAxisAlignment.center,
-			children: [],
-		   ),
-		),
-		);
+    Widget setupServerWidget() => Flexible(
+          child: Offstage(
+            offstage: !(!_svcStopped.value &&
+                stateGlobal.svcStatus.value == SvcStatus.ready &&
+                _svcIsUsingPublicServer.value),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [],
+            ),
+          ),
+        );
+
+    // 简化的 basicWidget：仅展示状态文本（移除底部外链/广告）
+    Widget basicWidget() => Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(child: _buildConnStatusMsg()),
+          ],
+        );
 
     return Container(
       height: height,
