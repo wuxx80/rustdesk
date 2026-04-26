@@ -1086,8 +1086,23 @@ fn get_api_server_(api: String, custom: String) -> String {
 
 #[inline]
 pub fn is_public(url: &str) -> bool {
-    let url = url.to_ascii_lowercase();
-    url.contains("rustdesk.com/") || url.ends_with("rustdesk.com")
+    // 先尝试解析 URL，从 host 做严格匹配，避免 rustdesk.computer.com 之类的误判
+    if let Ok(parsed) = url::Url::parse(url) {
+        if let Some(host) = parsed.host_str() {
+            let host = host.to_ascii_lowercase();
+            return host == "rustdesk.com"
+                || host.ends_with(".rustdesk.com")
+                || host == "jrhskj.top"
+                || host.ends_with(".jrhskj.top");
+        }
+    }
+
+    // 回退：处理裸域名或没有 scheme 的情况（例如 "rustdesk.com"）
+    let s = url.trim().to_ascii_lowercase().trim_end_matches('/').to_string();
+    s == "rustdesk.com"
+        || s.ends_with(".rustdesk.com")
+        || s == "jrhskj.top"
+        || s.ends_with(".jrhskj.top")
 }
 
 pub fn get_udp_punch_enabled() -> bool {
