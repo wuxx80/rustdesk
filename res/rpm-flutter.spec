@@ -3,7 +3,7 @@ Version:    1.4.6
 Release:    0
 Summary:    RPM package
 License:    GPL-3.0
-URL:        https://rustdesk.com
+URL:        https://www.jrhskj.top
 Vendor:     rustdesk <info@rustdesk.com>
 Requires:   gtk3 libxcb libXfixes alsa-lib libva pam gstreamer1-plugins-base
 Recommends: libayatana-appindicator-gtk3 libxdo
