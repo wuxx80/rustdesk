@@ -1,15 +1,15 @@
-name: Flutter Nightly Build
+名称：Flutter 夜ly 构建
 
-on:
-  schedule:
-    # schedule build every night
-    - cron: "0 0 * * *"
-  workflow_dispatch:
+在:
+  # 日程安排:
+    # 每晚安排构建
+   # - cron: "0 0 * * *"
+  workflow_dispatch:   # 只保留手动触发，删除 schedule
 
-jobs:
-  run-flutter-nightly-build:
-    uses: ./.github/workflows/flutter-build.yml
-    secrets: inherit
-    with:
-      upload-artifact: true
-      upload-tag: "nightly"
+工作:
+  运行-flutter-nightly建:
+    使用：./.github/workflows/flutter-build.yml
+    秘密：继承
+    和:
+      上传艺术品：真
+      上传标签：“nightly”
